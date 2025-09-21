@@ -36,10 +36,17 @@ TelefonoProveedor varchar (50) not null);
 go
 --Creacion de la tabla Proveedor
 
+insert into Proveedores values ('PR-2025001','Omar Perez','omar@gmail.com','7106-1920');
+
+
 Create table Categoria(
 idCategoria int primary key identity (1,1),
 NombreCategoria varchar (100) not null);
 go
+
+
+insert into Categoria values ('En existencia');
+
 
 Create table Productos (
 idProducto int primary key identity (1,1) ,
@@ -55,8 +62,30 @@ PrecioVenta decimal (10,2) default 0
 );
 go
 
+
+insert into Productos VALUES ('CPR-2025001', 'Soda',1,1,1,19.99,20.00);
+
+select * from Productos
+
+
+
+
 create view vw_Login
 as
 SELECT        dbo.Usuarios.Clave, dbo.Usuarios.NombreCompletoUsuario, dbo.Usuarios.correoUsuario, dbo.ROL.NombreRol
 FROM            dbo.ROL INNER JOIN
                          dbo.Usuarios ON dbo.ROL.idRol = dbo.Usuarios.rol_id
+
+
+
+
+
+
+                         create view vw_VerUsuarios
+                         as
+ SELECT       dbo.Usuarios.idUsuario,  dbo.Usuarios.NombreCompletoUsuario, dbo.Usuarios.correoUsuario, dbo.Usuarios.Clave, dbo.ROL.NombreRol
+FROM            dbo.ROL INNER JOIN
+                         dbo.Usuarios ON dbo.ROL.idRol = dbo.Usuarios.rol_id
+
+
+                        
