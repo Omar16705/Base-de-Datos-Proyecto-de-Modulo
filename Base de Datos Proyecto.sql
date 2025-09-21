@@ -62,10 +62,30 @@ PrecioVenta decimal (10,2) default 0
 );
 go
 
-
 insert into Productos VALUES ('CPR-2025001', 'Soda',1,1,1,19.99,20.00);
 
 select * from Productos
+
+
+create table TipoDocumentoVenta(
+idTipoDocumentoVenta int identity(1,1) primary key,
+nombreTipoDocumentoVenta varchar (20) not null);
+go
+
+Create table Ventas (
+idVenta int primary key identity (1,1),
+usuario_id int,
+foreign key (usuario_id) references Usuarios(idUsuario),
+producto_id int,
+foreign key (producto_id) references Productos(idProducto),
+tipoDocumentoVenta_id int,
+foreign key (tipoDocumentoVenta_id) references TipoDocumentoVenta(idTipoDocumentoVenta),
+Cantidad int,
+Montopago decimal (10,2) default 0.00,
+MontoCambio decimal (10,2) default 0.00,
+MontoTotal decimal (10,2) default 0.00);
+go
+
 
 
 
